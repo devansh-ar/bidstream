@@ -26,7 +26,7 @@ app.patch("/notifications/:id/read", async (req, res) => {
 });
 
 async function start() {
-  const conn = await amqp.connect("amqp://localhost");
+  const conn = await amqp.connect(process.env.RABBIT_URI || "amqp://localhost");
   const channel = await conn.createChannel();
 
   await channel.assertQueue("bid.updated", { durable: true });

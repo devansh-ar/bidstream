@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/bid_db");
+mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/bid_db");
 
 const bidSchema = new mongoose.Schema({
   listingId: {

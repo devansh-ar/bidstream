@@ -3,7 +3,7 @@ const amqp = require("amqplib");
 let channel = null;
 
 async function connectRabbit() {
-  const conn = await amqp.connect("amqp://localhost");
+  const conn = await amqp.connect(process.env.RABBIT_URI || "amqp://localhost");
   channel = await conn.createChannel();
   await channel.assertQueue("bid.placed", { durable: true });
   return channel;
